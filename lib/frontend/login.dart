@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:salonbooking/frontend/appointmentScreen.dart';
 import 'package:salonbooking/frontend/changepassword.dart';
 import 'package:salonbooking/frontend/dashboard.dart';
@@ -18,67 +19,79 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Email',
+      body: Container(
+        //backgroundimage
+        padding: EdgeInsets.all(20),
+        width: Get.width,
+        height: Get.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/login.jpg"), fit: BoxFit.cover),
+        ),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 20.0),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your email';
+                    } else if (!value.contains('@')) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _email = value!;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your email';
-                  } else if (!value.contains('@')) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _email = value!;
-                },
-              ),
-              SizedBox(height: 20.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
+                SizedBox(height: 20.0),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter a password';
+                    } else if (value.length < 6) {
+                      return 'Password must be at least 6 characters long';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _password = value!;
+                  },
                 ),
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter a password';
-                  } else if (value.length < 6) {
-                    return 'Password must be at least 6 characters long';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _password = value!;
-                },
-              ),
-              SizedBox(height: 20.0),
-              ElevatedButton(
-                child: Text('Login'),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard())
-                  
-              );},
-              ),
-              SizedBox(height: 20.0),
-              Text('Forgot password?'),
-              SizedBox(height: 20.0,),
-              ElevatedButton(
-                child: Text('Reset Password'),
-                onPressed: () {
-                  Navigator.pushReplacement(context, 
-                  MaterialPageRoute(builder: ((context) => ChangePasswordScreen())));
-                },
-              ),
-            ],
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  child: Text('Login'),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Dashboard()));
+                  },
+                ),
+                SizedBox(height: 20.0),
+                Text('Forgot password?'),
+                SizedBox(
+                  height: 20.0,
+                ),
+                ElevatedButton(
+                  child: Text('Reset Password'),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => ChangePasswordScreen())));
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

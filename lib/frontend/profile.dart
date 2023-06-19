@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:salonbooking/frontend/editprofile.dart';
 
@@ -23,15 +22,17 @@ class Profile extends StatelessWidget {
           ListTile(
             title: Text('Business Info'),
             onTap: () {
-            showDialog(context: context, builder: (context)=> BusinessInfoDialog(),
-            );
+              showDialog(
+                context: context,
+                builder: (context) => BusinessInfoDialog(),
+              );
               // Handle business info tapped
             },
           ),
-           ListTile(
+          ListTile(
             title: Text('Personal Info'),
             onTap: () {
-               showDialog(
+              showDialog(
                 context: context,
                 builder: (context) => PersonalInfoDialog(),
               );
@@ -106,7 +107,8 @@ class OnlineBookingDialog extends StatelessWidget {
                 ],
               ),
             ],
-          ),          /*Row(
+          ),
+          /*Row(
               children: [
                 Text('Allow Last Minute Availability'),
                 Switch(
@@ -118,10 +120,12 @@ class OnlineBookingDialog extends StatelessWidget {
                   },
                 ),*/
           TextFormField(
-            decoration: InputDecoration(labelText: 'Hours Notice for Cancellation'),
+            decoration:
+                InputDecoration(labelText: 'Hours Notice for Cancellation'),
           ),
           TextFormField(
-            decoration: InputDecoration(labelText: 'Hours Notice for Online Bookings'),
+            decoration:
+                InputDecoration(labelText: 'Hours Notice for Online Bookings'),
           ),
         ],
       ),
@@ -214,7 +218,8 @@ class BusinessInfoDialog extends StatelessWidget {
             decoration: InputDecoration(labelText: 'State'),
           ),
           TextField(
-            decoration: InputDecoration(labelText: 'SMS Notification Phone Number'),
+            decoration:
+                InputDecoration(labelText: 'SMS Notification Phone Number'),
           ),
         ],
       ),
@@ -236,4 +241,3 @@ class BusinessInfoDialog extends StatelessWidget {
     );
   }
 }
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:salonbooking/frontend/businessSet.dart';
 import 'package:salonbooking/frontend/login.dart';
 
@@ -17,13 +18,16 @@ class SignupScreen extends StatelessWidget {
     String password = _passwordController.text;
 
     // Perform validation and client registration logic
-     if (name.isNotEmpty && email.isNotEmpty && phone.isNotEmpty && password.isNotEmpty) {
-    // Client registration success, navigate to login screen
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
-  }else {
+    if (name.isNotEmpty &&
+        email.isNotEmpty &&
+        phone.isNotEmpty &&
+        password.isNotEmpty) {
+      // Client registration success, navigate to login screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    } else {
       // Display error message or perform error handling
       print('Error: All fields are required');
     }
@@ -38,13 +42,16 @@ class SignupScreen extends StatelessWidget {
     String password = _passwordController.text;
 
     // Perform validation and business setup logic
-   if (name.isNotEmpty && email.isNotEmpty && phone.isNotEmpty && password.isNotEmpty) {
-    // Client registration success, navigate to login screen
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BusinessSet()),
-    );
-  }else {
+    if (name.isNotEmpty &&
+        email.isNotEmpty &&
+        phone.isNotEmpty &&
+        password.isNotEmpty) {
+      // Client registration success, navigate to login screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BusinessSet()),
+      );
+    } else {
       // Display error message or perform error handling
       print('Error: All fields are required');
     }
@@ -56,102 +63,118 @@ class SignupScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Sign Up'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Register as a Client'),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextFormField(
-                            controller: _nameController,
-                            decoration: InputDecoration(labelText: 'Name'),
+      body: Container(
+        //backgroundimage
+        padding: EdgeInsets.all(20),
+        width: Get.width,
+        height: Get.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/bandika.jpg"), fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Register as a Client'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextFormField(
+                              controller: _nameController,
+                              decoration: InputDecoration(labelText: 'Name'),
+                            ),
+                            TextFormField(
+                              controller: _emailController,
+                              decoration: InputDecoration(labelText: 'Email'),
+                            ),
+                            TextFormField(
+                              controller: _phoneController,
+                              decoration:
+                                  InputDecoration(labelText: 'Phone Number'),
+                            ),
+                            TextFormField(
+                              controller: _passwordController,
+                              decoration:
+                                  InputDecoration(labelText: 'Password'),
+                              obscureText: true,
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text('Cancel'),
                           ),
-                          TextFormField(
-                            controller: _emailController,
-                            decoration: InputDecoration(labelText: 'Email'),
-                          ),
-                          TextFormField(
-                            controller: _phoneController,
-                            decoration: InputDecoration(labelText: 'Phone Number'),
-                          ),
-                          TextFormField(
-                            controller: _passwordController,
-                            decoration: InputDecoration(labelText: 'Password'),
-                            obscureText: true,
+                          ElevatedButton(
+                            onPressed: () => _registerClient(context),
+                            child: Text('Submit'),
                           ),
                         ],
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Text('Cancel'),
+                      );
+                    },
+                  );
+                },
+                child: Text('Register as a Client'),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Set Up My Business'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextFormField(
+                              controller: _nameController,
+                              decoration: InputDecoration(labelText: 'Name'),
+                            ),
+                            TextFormField(
+                              controller: _emailController,
+                              decoration: InputDecoration(labelText: 'Email'),
+                            ),
+                            TextFormField(
+                              controller: _phoneController,
+                              decoration:
+                                  InputDecoration(labelText: 'Phone Number'),
+                            ),
+                            TextFormField(
+                              controller: _passwordController,
+                              decoration:
+                                  InputDecoration(labelText: 'Password'),
+                              obscureText: true,
+                            ),
+                          ],
                         ),
-                        ElevatedButton(
-                          onPressed: () => _registerClient(context),
-                          child: Text('Submit'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text('Register as a Client'),
-            ),
-            SizedBox(height: 16,),
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Set Up My Business'),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextFormField(
-                            controller: _nameController,
-                            decoration: InputDecoration(labelText: 'Name'),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text('Cancel'),
                           ),
-                          TextFormField(
-                            controller: _emailController,
-                            decoration: InputDecoration(labelText: 'Email'),
-                          ),
-                          TextFormField(
-                            controller: _phoneController,
-                            decoration: InputDecoration(labelText: 'Phone Number'),
-                          ),
-                          TextFormField(
-                            controller: _passwordController,
-                            decoration: InputDecoration(labelText: 'Password'),
-                            obscureText: true,
+                          ElevatedButton(
+                            onPressed: () => _setUpBusiness(context),
+                            child: Text('Submit'),
                           ),
                         ],
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Text('Cancel'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () => _setUpBusiness(context),
-                          child: Text('Submit'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text('Set Up My Business'),
-            ),
-          ],
+                      );
+                    },
+                  );
+                },
+                child: Text('Set Up My Business'),
+              ),
+            ],
+          ),
         ),
       ),
     );
